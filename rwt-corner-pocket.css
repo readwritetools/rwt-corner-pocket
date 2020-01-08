@@ -15,9 +15,11 @@
 	--light-black: #171717;
 	--medium-black: #222;
 	--black: #333;
+	--dark-gray: #555;
 	--gray: #777;
 	--white: #ccc;
 	--pure-white: #fff;
+	--js-blue: #76afe8;
 	--title-blue: #42affa;
 	--yellow: #ffffa4;
 	--red: #ff3d3d;
@@ -37,11 +39,11 @@
 	--left: 30px;
 	--width: 18rem;
 	--item-height: 3rem;
-	
-	/* calculated element variables */	
-	--height: calc(var(--num-items) * var(--item-height) + 2px);
 	--icon-size: 2rem;
 	--sidebar-width: 2rem;
+	
+	/* calculated sizing */
+	--height: calc(var(--num-items) * var(--item-height) + 2px);
 	--container-width: calc(var(--width) - var(--sidebar-width) - 2px);
 	--text-width: calc(var(--container-width) - var(--icon-size) - 1rem));
 }
