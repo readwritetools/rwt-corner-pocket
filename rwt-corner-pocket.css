@@ -1,0 +1,187 @@
+/*=============================================================================
+
+  File:         /node_modules/rwt-corner-pocket/rwt-corner-pocket.css
+  Language:     CSS
+  Copyright:    Read Write Tools © 2020
+  License:      MIT
+  Initial date: Jan 7, 2020
+  Contents:     Lower left corner-pocket popup menu
+
+=============================================================================*/
+
+:host {
+	--pure-black: #000;
+	--nav-black: #111;
+	--light-black: #171717;
+	--medium-black: #222;
+	--black: #333;
+	--gray: #777;
+	--white: #ccc;
+	--pure-white: #fff;
+	--title-blue: #42affa;
+	--yellow: #ffffa4;
+	--red: #ff3d3d;
+		
+	/* custom element decorations */
+	--color: var(--white);
+	--accent-color1: var(--yellow);
+	--accent-color2: var(--gray);
+	--background: var(--nav-black);
+	--accent-background1: var(--light-black);
+	--accent-background2: var(--medium-black);
+	--accent-background3: var(--pure-black);
+
+	/* custom element variables */	
+	--num-items: 4;
+	--bottom: 30px;
+	--left: 30px;
+	--width: 18rem;
+	--item-height: 3rem;
+	
+	/* calculated element variables */	
+	--height: calc(var(--num-items) * var(--item-height) + 2px);
+	--icon-size: 2rem;
+	--sidebar-width: 2rem;
+	--container-width: calc(var(--width) - var(--sidebar-width) - 2px);
+	--text-width: calc(var(--container-width) - var(--icon-size) - 1rem));
+}
+
+:host {
+	font-size: 12pt;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: normal;
+}
+
+#panel {
+	position: fixed;
+	bottom: var(--bottom);
+	left: var(--left);
+	height: var(--height);
+	width: var(--width);
+	background-color: var(--background);
+	border: 1px solid var(--accent-background3);
+	box-sizing: border-box;
+    box-shadow: 5px 5px 8px var(--accent-background3);
+}
+#panel.hide-menu {
+	display: none;
+}
+#panel.show-menu {
+	display: block;
+	animation-name: slide-in;
+	animation-duration: 400ms;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
+}
+@keyframes slide-in {
+  0% {
+	bottom: calc(var(--bottom) - var(--height));
+	left: calc(var(--left) - var(--width));
+  }
+  100% {
+	bottom: var(--bottom);
+	left: var(--left);
+  }
+}	
+
+/* ---------- sidebar ---------- */
+#sidebar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: calc(var(--height) - 2px);
+	width: var(--sidebar-width);
+	margin: 0;
+	background-color: var(--background);
+	border-right: 1px solid var(--accent-background3);
+	box-sizing: border-box;
+}
+#caption {
+	position: absolute;
+	top: var(--height);
+	left: 0;
+	height: var(--sidebar-width);
+	width: var(--height);
+	margin: 0;
+	padding-top: 0.4rem;
+	color: var(--color);
+	font-weight: 600;
+	font-size: 1.2rem;
+	white-space: nowrap;
+	overflow: hidden;
+	letter-spacing: 2px;
+	line-height: 1;
+	text-align: center;
+	text-transform: uppercase;
+	transform-origin: top left;
+	transform-box: border-box;
+	rotate: -90deg; 
+}
+
+/* ---------- anchor text ---------- */
+#container {
+	position: absolute;
+	left: var(--sidebar-width);
+	width: var(--container-width);
+	height: calc(var(--height) - 2px);
+	box-sizing: border-box;
+	overflow-y: auto;
+	overflow-x: hidden;
+	background-color: var(--black);
+}
+#container a {
+	width: var(--text-width);
+	height: var(--item-height);
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	box-sizing: border-box;
+	padding: 0.5rem 1rem;
+	background-color: var(--accent-background2);
+	text-decoration: none;
+	border-bottom: var(--accent-background3) 1px dotted;
+}
+#container a:nth-child(even) {
+	background-color: var(--accent-background1);
+}
+#container a:last-of-type {
+	border-bottom: none;
+}
+#container a:hover {
+	background-color: var(--accent-background3);
+}
+#container a:focus {
+	background-color: var(--accent-background3);
+	outline: 1px dotted var(--accent-color2);
+	outline-offset: -4px;
+}
+#container a.activename {
+	background-color: var(--accent-background3);
+}
+#container a:focus p,
+#container a:hover p {
+	color: var(--accent-color1);
+}
+#container p {
+	display: block;
+	color: var(--color);
+	text-decoration: none;
+	white-space: nowrap;
+	width: var(--text-width);
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.thin {
+	font-weight: 400;
+	letter-spacing: 1px;
+}
+.heavy {
+	font-weight: 900;
+}
+#container img {
+	width: var(--icon-size);
+	height: var(--icon-size);
+	margin-right: 1rem;
+}

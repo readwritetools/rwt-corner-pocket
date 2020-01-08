@@ -1,0 +1,32 @@
+!blue 2.0
+//=============================================================================
+//
+//  File:         /node_modules/rwt-corner-pocket/rwt-corner-pocket.blue
+//  Language:     Blue-phrase
+//  Copyright:    Read Write Tools © 2020
+//  License:      MIT
+//  Initial date: Jan 7, 2020
+//  Contents:     Lower left corner-pocket popup menu
+//
+//=============================================================================
+
+/* Slot content into the custom element directly, or create a sourceref file with the content.
+   Either way, you should follow this pattern:
+
+	a `https://readwritetools.com` *tabindex=301 *title='Smart tech for people who type' {
+		p <<.thin READ WRITE>> <<.heavy TOOLS>>
+		img `/corner-pocket/img/rwtools.png`
+	}
+*/
+
+!option --fragment
+
+div #panel .hide-menu {
+	div #sidebar {
+		p #caption
+	}
+	
+	div #container {
+		slot
+	}
+}

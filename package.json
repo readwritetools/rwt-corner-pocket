@@ -1,0 +1,30 @@
+{
+  "name": "rwt-corner-pocket",
+  "version": "1.0.0",
+  "description": "Lower left corner-pocket popup menu, a W3C standard Web Component",
+  "author": "Read Write Tools",
+  "license": "MIT",
+  "module": "rwt-corner-pocket.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/readwritetools/rwt-corner-pocket.git"
+  },
+  "scripts": {
+    "bump-version": "npm version patch && git push && git push --tags"
+  },
+  "keywords": [
+    "web-component",
+    "custom-element",
+    "html-template",
+    "shadow-dom"
+  ],
+  "bugs": {
+    "url": "https://github.com/readwritetools/rwt-corner-pocket/issues"
+  },
+  "homepage": "https://hub.readwritetools.com/components/corner-pocket.blue",
+  "files": [
+    "rwt-corner-pocket.blue",
+    "rwt-corner-pocket.css",
+    "rwt-corner-pocket.js"
+  ]
+}
