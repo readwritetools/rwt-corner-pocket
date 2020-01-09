@@ -100,7 +100,7 @@ git clone https://github.com/readwritetools/rwt-corner-pocket.git
 
 ### Using the web component
 
-After installation, you need to add two things to your HTML page to make use of
+After installation, you need to add four things to your HTML page to make use of
 it.
 
    * Add a `script` tag to load the component's `rwt-corner-pocket.js` file:
@@ -124,6 +124,20 @@ it.
       * Here's an example HTML tag where the menu items are in a separate file:
 ```html
 <rwt-corner-pocket id=corner-pocket sourceref='/menu.html' titlebar='Find It Here' shortcut=F3 role=navigation></rwt-corner-pocket>
+```
+
+   * Add a button for the visitor to click to show the dialog:
+```html
+<a id=corner-pocket-button title='Find It Here (F3)'>⋮</a>
+```
+
+   * Add a listener to respond to the click event:
+```html
+<script type=module>
+    document.getElementById('corner-pocket-button').addEventListener('click', (e) => {
+        document.getElementById('corner-pocket').toggleDialog(e);
+    });
+</script>
 ```
 
 
