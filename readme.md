@@ -33,12 +33,13 @@ there may be a desire to guide visitors to a short list of external websites
 that are somehow related.
 
 The <span>rwt-corner-pocket</span> web component is normally kept
-hidden until needed, when it slides into the viewport from the bottom left
-corner. Visibility of the menu is under control of a separate button that
+hidden until needed, when it slides into the viewport from any one of its four
+corners. Visibility of the menu is under control of a separate button that
 triggers the component's `toggleMenu` method or its event interface.
 
 The component has these features:
 
+   * The position of the menu is relative to any one of the four viewport corners.
    * The menu has a title bar running vertically along its left edge.
    * Each menu item has both text and icon.
    * The menu item corresponding to the current page is highlighted when the page is
@@ -115,6 +116,12 @@ it.
          menu's hyperlinks.
       * Apply a `titlebar` attribute with the text that should appear along the left edge
          of the popup panel.
+      * Apply a `corner` attribute with one of these values
+
+         * top-left
+         * top-right
+         * bottom-left
+         * bottom-right
       * Optionally, apply a `shortcut` attribute with something like `F3`, `F4`, etc. for
          hotkey access.
       * For WAI-ARIA accessibility apply a `role=navigation` attribute.
@@ -123,7 +130,7 @@ it.
 `<rwt-corner-pocket>` and `</rwt-corner-pocket>` tags.
       * Here's an example HTML tag where the menu items are in a separate file:
 ```html
-<rwt-corner-pocket id=corner-pocket sourceref='/menu.html' titlebar='Find It Here' shortcut=F3 role=navigation></rwt-corner-pocket>
+<rwt-corner-pocket id=corner-pocket sourceref='/menu.html' corner='bottom-left' titlebar='Find It Here' shortcut=F3 role=navigation></rwt-corner-pocket>
 ```
 
    * Add a button for the visitor to click to show the dialog:
@@ -180,8 +187,9 @@ The overall width of the popup panel is specified with the `--width` variable. T
 width of the sidebar title is specified with `--sidebar-width`, and the remainder
 is allocated to the menuitem's text and icon.
 
-The position of the panel's bottom left corner is set with the `--bottom` and `--left`
-variables.
+The position of the panel's offset from the chosen corner is set with the `--top`,
+`--left`, `--bottom`, and `--right` variables. (Only the two variables corresponding
+to the chosen corner are needed.)
 
 ```css
 rwt-corner-pocket {

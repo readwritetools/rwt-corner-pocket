@@ -159,12 +159,9 @@ export default class RwtCornerPocket extends HTMLElement {
 
 	//^ Get the user-specified shortcut key. This will be used to open the dialog.
 	//  Valid values are "F1", "F2", etc., specified with the *shortcut attribute on the custom element
-	//  Default value is "F3"
 	initializeShortcutKey() {
 		if (this.hasAttribute('shortcut'))
 			this.shortcutKey = this.getAttribute('shortcut');
-		else
-			this.shortcutKey = 'F3';
 	}
 
 	//^ Highlight the anchor element corresponding to this document
@@ -228,7 +225,7 @@ export default class RwtCornerPocket extends HTMLElement {
 			event.stopPropagation();
 		}
 		// like 'F1', 'F2', etc
-		if (event.key == this.shortcutKey) {
+		if (event.key == this.shortcutKey && this.shortcutKey != null) {
 			this.toggleMenu(event);
 			event.stopPropagation();
 			event.preventDefault();

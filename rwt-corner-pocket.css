@@ -35,6 +35,7 @@
 
 	/* custom element variables */	
 	--num-items: 4;
+	--top: 30px;
 	--bottom: 30px;
 	--left: 30px;
 	--right: 30px;
