@@ -24,6 +24,7 @@ export default class RwtCornerPocket extends HTMLElement {
 
 		// properties
 		this.shortcutKey = null;
+		this.corner = null;
 		RwtCornerPocket.elementInstance++;
 		this.collapseSender = `RwtCornerPocket ${RwtCornerPocket.elementInstance}`;
 
@@ -66,6 +67,7 @@ export default class RwtCornerPocket extends HTMLElement {
 		this.initializeCaption();
 		this.initializeShortcutKey();
 		this.highlightActiveElement();
+		this.determineCorner();
 	}
 	
 	//-------------------------------------------------------------------------
@@ -191,7 +193,23 @@ export default class RwtCornerPocket extends HTMLElement {
 			this.activeElement.classList.add('activename');								//  use CSS to highlight the element
 		}
 	}
-	
+
+	determineCorner() {
+		this.corner = 'bottom-left';
+
+		if (this.hasAttribute('corner')) {
+			var attr = this.getAttribute('corner');
+			if (attr.indexOf('bottom') != -1 && attr.indexOf('left') != -1)
+				this.corner = 'bottom-left';
+			else if (attr.indexOf('bottom') != -1 && attr.indexOf('right') != -1)
+				this.corner = 'bottom-right';
+			else if (attr.indexOf('top') != -1 && attr.indexOf('left') != -1)
+				this.corner = 'top-left';
+			else if (attr.indexOf('top') != -1 && attr.indexOf('right') != -1)
+				this.corner = 'top-right';
+		}
+	}
+
 	//-------------------------------------------------------------------------
 	// document events
 	//-------------------------------------------------------------------------
@@ -264,7 +282,8 @@ export default class RwtCornerPocket extends HTMLElement {
 
 	showMenu() {
 		this.collapseOtherPopups();
-		this.panel.className = 'show-menu';
+
+		this.panel.className = this.corner;		// bottom-left, bottom-right, top-left, top-right
 		
 		if (this.activeElement != null)
 			this.activeElement.focus();

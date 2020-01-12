@@ -37,6 +37,7 @@
 	--num-items: 4;
 	--bottom: 30px;
 	--left: 30px;
+	--right: 30px;
 	--width: 18rem;
 	--item-height: 3rem;
 	--icon-size: 2rem;
@@ -56,8 +57,11 @@
 
 #panel {
 	position: fixed;
-	bottom: var(--bottom);
-	left: var(--left);
+	
+	xbottom: var(--bottom);
+	xleft: var(--left);
+	xright: var(--right);
+	
 	height: var(--height);
 	width: var(--width);
 	background-color: var(--background);
@@ -68,14 +72,39 @@
 #panel.hide-menu {
 	display: none;
 }
-#panel.show-menu {
+
+#panel.bottom-left,
+#panel.bottom-right,
+#panel.top-left,
+#panel.top-right {
 	display: block;
-	animation-name: slide-in;
 	animation-duration: 250ms;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-out;
 }
-@keyframes slide-in {
+
+#panel.bottom-left 	{
+	animation-name: bottom-left;
+	bottom: var(--bottom);
+	left: var(--left);
+}
+#panel.bottom-right {
+	animation-name: bottom-right;
+	bottom: var(--bottom);
+	right: var(--right);
+}
+#panel.top-left 	{
+	animation-name: top-left;
+	top: var(--top);
+	left: var(--left);
+}
+#panel.top-right 	{
+	animation-name: top-right;
+	top: var(--top);
+	right: var(--right);
+}
+
+@keyframes bottom-left {
   0% {
 	bottom: calc(var(--bottom) - var(--height));
 	left: calc(var(--left) - var(--width));
@@ -83,6 +112,36 @@
   100% {
 	bottom: var(--bottom);
 	left: var(--left);
+  }
+}	
+@keyframes bottom-right {
+  0% {
+	bottom: calc(var(--bottom) - var(--height));
+	right: calc(0px - var(--right) - var(--width));
+  }
+  100% {
+	bottom: var(--bottom);
+	right: var(--right);
+  }
+}	
+@keyframes top-left {
+  0% {
+	top: calc(0px - var(--top) - var(--height));
+	left: calc(var(--left) - var(--width));
+  }
+  100% {
+	top: var(--top);
+	left: var(--left);
+  }
+}	
+@keyframes top-right {
+  0% {
+	top: calc(0px - var(--top) - var(--height));
+	right: calc(0px - var(--right) - var(--width));
+  }
+  100% {
+	top: var(--top);
+	right: var(--right);
   }
 }	
 
