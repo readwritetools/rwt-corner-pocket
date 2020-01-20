@@ -177,7 +177,7 @@
 	text-transform: uppercase;
 	transform-origin: top left;
 	transform-box: border-box;
-	rotate: -90deg; 
+	transform: rotate(-90deg); 
 }
 
 /* ---------- anchor text ---------- */
