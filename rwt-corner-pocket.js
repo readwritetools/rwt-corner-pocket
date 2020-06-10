@@ -12,8 +12,8 @@
 export default class RwtCornerPocket extends HTMLElement {
 
 	static elementInstance = 1;
-	static htmlURL  = '/node_modules/rwt-kanji/rwt-kanji.blue';
-	static cssURL   = '/node_modules/rwt-kanji/rwt-kanji.css';
+	static htmlURL  = '/node_modules/rwt-corner-pocket/rwt-corner-pocket.blue';
+	static cssURL   = '/node_modules/rwt-corner-pocket/rwt-corner-pocket.css';
 	static htmlText = null;
 	static cssText  = null;
 
@@ -89,20 +89,20 @@ export default class RwtCornerPocket extends HTMLElement {
 			
 			document.addEventListener('html-template-ready', () => {
 				var template = document.createElement('template');
-				template.innerHTML = RwtKanji.htmlText;
+				template.innerHTML = RwtCornerPocket.htmlText;
 				resolve(template.content);
 			});
 			
 			if (this.instance == 1) {
-				var response = await fetch(RwtKanji.htmlURL, {cache: "no-cache", referrerPolicy: 'no-referrer'});
+				var response = await fetch(RwtCornerPocket.htmlURL, {cache: "no-cache", referrerPolicy: 'no-referrer'});
 				if (response.status != 200 && response.status != 304) {
-					reject(new Error(`Request for ${RwtKanji.htmlURL} returned with ${response.status}`));
+					reject(new Error(`Request for ${RwtCornerPocket.htmlURL} returned with ${response.status}`));
 					return;
 				}
-				RwtKanji.htmlText = await response.text();
+				RwtCornerPocket.htmlText = await response.text();
 				document.dispatchEvent(new Event('html-template-ready'));
 			}
-			else if (RwtKanji.htmlText != null) {
+			else if (RwtCornerPocket.htmlText != null) {
 				document.dispatchEvent(new Event('html-template-ready'));
 			}
 		});
@@ -116,20 +116,20 @@ export default class RwtCornerPocket extends HTMLElement {
 
 			document.addEventListener('css-text-ready', () => {
 				var styleElement = document.createElement('style');
-				styleElement.innerHTML = RwtKanji.cssText;
+				styleElement.innerHTML = RwtCornerPocket.cssText;
 				resolve(styleElement);
 			});
 			
 			if (this.instance == 1) {
-				var response = await fetch(RwtKanji.cssURL, {cache: "no-cache", referrerPolicy: 'no-referrer'});
+				var response = await fetch(RwtCornerPocket.cssURL, {cache: "no-cache", referrerPolicy: 'no-referrer'});
 				if (response.status != 200 && response.status != 304) {
-					reject(new Error(`Request for ${RwtKanji.cssURL} returned with ${response.status}`));
+					reject(new Error(`Request for ${RwtCornerPocket.cssURL} returned with ${response.status}`));
 					return;
 				}
-				RwtKanji.cssText = await response.text();
+				RwtCornerPocket.cssText = await response.text();
 				document.dispatchEvent(new Event('css-text-ready'));
 			}
-			else if (RwtKanji.cssText != null) {
+			else if (RwtCornerPocket.cssText != null) {
 				document.dispatchEvent(new Event('css-text-ready'));
 			}
 		});
