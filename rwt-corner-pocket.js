@@ -75,7 +75,6 @@ export default class RwtCornerPocket extends HTMLElement {
 	// initialization
 	//-------------------------------------------------------------------------
 
-
 	// Only the first instance of this component fetches the HTML text from the server.
 	// All other instances wait for it to issue an 'html-template-ready' event.
 	// If this function is called when the first instance is still pending,
@@ -85,9 +84,10 @@ export default class RwtCornerPocket extends HTMLElement {
 	// When the event is received, create an HTMLTemplateElement from the fetched HTML text,
 	// and resolve the promise with a DocumentFragment.
 	getHtmlFragment() {
+		var thisComponent = this;
+
 		return new Promise(async (resolve, reject) => {
-			
-			document.addEventListener('html-template-ready', () => {
+			thisComponent.addEventListener('html-template-ready', (event) => {
 				var template = document.createElement('template');
 				template.innerHTML = RwtCornerPocket.htmlText;
 				resolve(template.content);
@@ -100,10 +100,10 @@ export default class RwtCornerPocket extends HTMLElement {
 					return;
 				}
 				RwtCornerPocket.htmlText = await response.text();
-				document.dispatchEvent(new Event('html-template-ready'));
+				thisComponent.dispatchEvent(new CustomEvent('html-template-ready', {detail: 'RwtCornerPocket'}));
 			}
 			else if (RwtCornerPocket.htmlText != null) {
-				document.dispatchEvent(new Event('html-template-ready'));
+				thisComponent.dispatchEvent(new CustomEvent('html-template-ready', {detail: 'RwtCornerPocket'}));
 			}
 		});
 	}
@@ -112,9 +112,10 @@ export default class RwtCornerPocket extends HTMLElement {
 	// When the 'css-text-ready' event is received, create an HTMLStyleElement from the fetched CSS text,
 	// and resolve the promise with that element.
 	getCssStyleElement() {
-		return new Promise(async (resolve, reject) => {
+		var thisComponent = this;
 
-			document.addEventListener('css-text-ready', () => {
+		return new Promise(async (resolve, reject) => {
+			thisComponent.addEventListener('css-text-ready', (event) => {
 				var styleElement = document.createElement('style');
 				styleElement.innerHTML = RwtCornerPocket.cssText;
 				resolve(styleElement);
@@ -127,14 +128,14 @@ export default class RwtCornerPocket extends HTMLElement {
 					return;
 				}
 				RwtCornerPocket.cssText = await response.text();
-				document.dispatchEvent(new Event('css-text-ready'));
+				thisComponent.dispatchEvent(new CustomEvent('css-text-ready', {detail: 'RwtCornerPocket'}));
 			}
 			else if (RwtCornerPocket.cssText != null) {
-				document.dispatchEvent(new Event('css-text-ready'));
+				thisComponent.dispatchEvent(new CustomEvent('css-text-ready', {detail: 'RwtCornerPocket'}));
 			}
 		});
 	}
-	
+
 	//^ Fetch the user-specified menu items from the file specified in
 	//  the custom element's sourceref attribute, which is a URL.
 	//
