@@ -29,7 +29,7 @@ export default class RwtCornerPocket extends HTMLElement {
 		this.shortcutKey = null;
 		this.corner = null;
 		this.instance = RwtCornerPocket.elementInstance++;
-		this.collapseSender = `RwtCornerPocket ${RwtCornerPocket.elementInstance}`;
+		this.collapseSender = `RwtCornerPocket ${this.instance}`;
 
 		// select and scroll to this document's menu item
 		this.activeElement = null;
@@ -266,15 +266,14 @@ export default class RwtCornerPocket extends HTMLElement {
 
 	//^ Send an event to close/hide all other registered popups
 	collapseOtherPopups() {
-		var collapseSender = this.collapseSender;
-		var collapseEvent = new CustomEvent('collapse-popup', {detail: { collapseSender }});
+		var collapseEvent = new CustomEvent('collapse-popup', {detail: this.collapseSender});
 		document.dispatchEvent(collapseEvent);
 	}
 	
 	//^ Listen for an event on the document instructing this component to close/hide
 	//  But don't collapse this component, if it was the one that generated it
 	onCollapsePopup(event) {
-		if (event.detail.sender == this.collapseSender)
+		if (event.detail == this.collapseSender)
 			return;
 		else
 			this.hideMenu();
