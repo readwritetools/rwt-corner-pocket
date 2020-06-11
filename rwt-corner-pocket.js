@@ -84,10 +84,10 @@ export default class RwtCornerPocket extends HTMLElement {
 	// When the event is received, create an HTMLTemplateElement from the fetched HTML text,
 	// and resolve the promise with a DocumentFragment.
 	getHtmlFragment() {
-		var thisComponent = this;
-
 		return new Promise(async (resolve, reject) => {
-			thisComponent.addEventListener('html-template-ready', (event) => {
+			var htmlTemplateReady = `RwtCornerPocket-html-template-ready`;
+			
+			document.addEventListener(htmlTemplateReady, () => {
 				var template = document.createElement('template');
 				template.innerHTML = RwtCornerPocket.htmlText;
 				resolve(template.content);
@@ -100,10 +100,10 @@ export default class RwtCornerPocket extends HTMLElement {
 					return;
 				}
 				RwtCornerPocket.htmlText = await response.text();
-				thisComponent.dispatchEvent(new CustomEvent('html-template-ready', {detail: 'RwtCornerPocket'}));
+				document.dispatchEvent(new Event(htmlTemplateReady));
 			}
 			else if (RwtCornerPocket.htmlText != null) {
-				thisComponent.dispatchEvent(new CustomEvent('html-template-ready', {detail: 'RwtCornerPocket'}));
+				document.dispatchEvent(new Event(htmlTemplateReady));
 			}
 		});
 	}
@@ -112,10 +112,10 @@ export default class RwtCornerPocket extends HTMLElement {
 	// When the 'css-text-ready' event is received, create an HTMLStyleElement from the fetched CSS text,
 	// and resolve the promise with that element.
 	getCssStyleElement() {
-		var thisComponent = this;
-
 		return new Promise(async (resolve, reject) => {
-			thisComponent.addEventListener('css-text-ready', (event) => {
+			var cssTextReady = `RwtCornerPocket-css-text-ready`;
+
+			document.addEventListener(cssTextReady, () => {
 				var styleElement = document.createElement('style');
 				styleElement.innerHTML = RwtCornerPocket.cssText;
 				resolve(styleElement);
@@ -128,10 +128,10 @@ export default class RwtCornerPocket extends HTMLElement {
 					return;
 				}
 				RwtCornerPocket.cssText = await response.text();
-				thisComponent.dispatchEvent(new CustomEvent('css-text-ready', {detail: 'RwtCornerPocket'}));
+				document.dispatchEvent(new Event(cssTextReady));
 			}
 			else if (RwtCornerPocket.cssText != null) {
-				thisComponent.dispatchEvent(new CustomEvent('css-text-ready', {detail: 'RwtCornerPocket'}));
+				document.dispatchEvent(new Event(cssTextReady));
 			}
 		});
 	}
