@@ -43,6 +43,7 @@
 	--item-height: 3rem;
 	--icon-size: 2rem;
 	--sidebar-width: 2rem;
+	--z-index: 1;
 	
 	/* calculated sizing */
 	--height: calc(var(--num-items) * var(--item-height) + 2px);
@@ -58,17 +59,13 @@
 
 #panel {
 	position: fixed;
-	
-	xbottom: var(--bottom);
-	xleft: var(--left);
-	xright: var(--right);
-	
 	height: var(--height);
 	width: var(--width);
 	background-color: var(--background);
 	border: 1px solid var(--accent-background3);
 	box-sizing: border-box;
     box-shadow: 5px 5px 8px var(--accent-background3);
+    z-index: var(--z-index);
 }
 #panel.hide-menu {
 	display: none;
