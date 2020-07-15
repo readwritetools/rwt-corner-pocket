@@ -48,7 +48,7 @@
 	/* calculated sizing */
 	--height: calc(var(--num-items) * var(--item-height) + 2px);
 	--container-width: calc(var(--width) - var(--sidebar-width) - 2px);
-	--text-width: calc(var(--container-width) - var(--icon-size) - 1rem));
+	--text-width: calc(var(--container-width) - var(--icon-size) + 2rem);
 }
 
 :host {
