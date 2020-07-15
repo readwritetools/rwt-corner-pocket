@@ -9,27 +9,35 @@
 //
 //=============================================================================
 
-export default class RwtCornerPocket extends HTMLElement {
+const Static = {
+	componentName:    'rwt-corner-pocket',
+	elementInstance:  1,
+	htmlURL:          '/node_modules/rwt-corner-pocket/rwt-corner-pocket.blue',
+	cssURL:           '/node_modules/rwt-corner-pocket/rwt-corner-pocket.css',
+	htmlText:         null,
+	cssText:          null
+};
 
-	static elementInstance = 1;
-	static htmlURL  = '/node_modules/rwt-corner-pocket/rwt-corner-pocket.blue';
-	static cssURL   = '/node_modules/rwt-corner-pocket/rwt-corner-pocket.css';
-	static htmlText = null;
-	static cssText  = null;
+Object.seal(Static);
+
+export default class RwtCornerPocket extends HTMLElement {
 
 	constructor() {
 		super();
 		
+		// guardrails
+		this.instance = Static.elementInstance++;
+		this.isComponentLoaded = false;
+		
+		// properties
+		this.collapseSender = `${Static.componentName} ${this.instance}`;
+		this.shortcutKey = null;
+		this.corner = null;
+
 		// child elements
 		this.panel = null;
 		this.caption = null;
 		this.container = null;
-
-		// properties
-		this.shortcutKey = null;
-		this.corner = null;
-		this.instance = RwtCornerPocket.elementInstance++;
-		this.collapseSender = `RwtCornerPocket ${this.instance}`;
 
 		// select and scroll to this document's menu item
 		this.activeElement = null;
@@ -65,6 +73,7 @@ export default class RwtCornerPocket extends HTMLElement {
 			this.initializeShortcutKey();
 			this.highlightActiveElement();
 			this.determineCorner();
+			this.sendComponentLoaded();
 		}
 		catch (err) {
 			console.log(err.message);
@@ -85,24 +94,24 @@ export default class RwtCornerPocket extends HTMLElement {
 	// and resolve the promise with a DocumentFragment.
 	getHtmlFragment() {
 		return new Promise(async (resolve, reject) => {
-			var htmlTemplateReady = `RwtCornerPocket-html-template-ready`;
+			var htmlTemplateReady = `${Static.componentName}-html-template-ready`;
 			
 			document.addEventListener(htmlTemplateReady, () => {
 				var template = document.createElement('template');
-				template.innerHTML = RwtCornerPocket.htmlText;
+				template.innerHTML = Static.htmlText;
 				resolve(template.content);
 			});
 			
 			if (this.instance == 1) {
-				var response = await fetch(RwtCornerPocket.htmlURL, {cache: "no-cache", referrerPolicy: 'no-referrer'});
+				var response = await fetch(Static.htmlURL, {cache: "no-cache", referrerPolicy: 'no-referrer'});
 				if (response.status != 200 && response.status != 304) {
-					reject(new Error(`Request for ${RwtCornerPocket.htmlURL} returned with ${response.status}`));
+					reject(new Error(`Request for ${Static.htmlURL} returned with ${response.status}`));
 					return;
 				}
-				RwtCornerPocket.htmlText = await response.text();
+				Static.htmlText = await response.text();
 				document.dispatchEvent(new Event(htmlTemplateReady));
 			}
-			else if (RwtCornerPocket.htmlText != null) {
+			else if (Static.htmlText != null) {
 				document.dispatchEvent(new Event(htmlTemplateReady));
 			}
 		});
@@ -113,24 +122,24 @@ export default class RwtCornerPocket extends HTMLElement {
 	// and resolve the promise with that element.
 	getCssStyleElement() {
 		return new Promise(async (resolve, reject) => {
-			var cssTextReady = `RwtCornerPocket-css-text-ready`;
+			var cssTextReady = `${Static.componentName}-css-text-ready`;
 
 			document.addEventListener(cssTextReady, () => {
 				var styleElement = document.createElement('style');
-				styleElement.innerHTML = RwtCornerPocket.cssText;
+				styleElement.innerHTML = Static.cssText;
 				resolve(styleElement);
 			});
 			
 			if (this.instance == 1) {
-				var response = await fetch(RwtCornerPocket.cssURL, {cache: "no-cache", referrerPolicy: 'no-referrer'});
+				var response = await fetch(Static.cssURL, {cache: "no-cache", referrerPolicy: 'no-referrer'});
 				if (response.status != 200 && response.status != 304) {
-					reject(new Error(`Request for ${RwtCornerPocket.cssURL} returned with ${response.status}`));
+					reject(new Error(`Request for ${Static.cssURL} returned with ${response.status}`));
 					return;
 				}
-				RwtCornerPocket.cssText = await response.text();
+				Static.cssText = await response.text();
 				document.dispatchEvent(new Event(cssTextReady));
 			}
-			else if (RwtCornerPocket.cssText != null) {
+			else if (Static.cssText != null) {
 				document.dispatchEvent(new Event(cssTextReady));
 			}
 		});
@@ -240,6 +249,22 @@ export default class RwtCornerPocket extends HTMLElement {
 		}
 	}
 
+	//^ Inform the document's custom element that it is ready for programmatic use 
+	sendComponentLoaded() {
+		this.isComponentLoaded = true;
+		this.dispatchEvent(new Event('component-loaded', {bubbles: true}));
+	}
+
+	//^ A Promise that resolves when the component is loaded
+	waitOnLoading() {
+		return new Promise((resolve) => {
+			if (this.isComponentLoaded == true)
+				resolve();
+			else
+				this.addEventListener('component-loaded', resolve);
+		});
+	}
+	
 	//-------------------------------------------------------------------------
 	// document events
 	//-------------------------------------------------------------------------
@@ -323,4 +348,4 @@ export default class RwtCornerPocket extends HTMLElement {
 	}
 }
 
-window.customElements.define('rwt-corner-pocket', RwtCornerPocket);
+window.customElements.define(Static.componentName, RwtCornerPocket);
