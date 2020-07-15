@@ -223,44 +223,45 @@ rwt-corner-pocket {
 }
 ```
 
-### Event interface
+### Life-cycle events
+
+The component issues life-cycle events.
+
+
+<dl>
+	<dt><code>component-loaded</code></dt>
+	<dd>Sent when the component is fully loaded and ready to be used. As a convenience you can use the <code>waitOnLoading()</code> method which returns a promise that resolves when the <code>component-loaded</code> event is received. Call this asynchronously with <code>await</code>.</dd>
+</dl>
+
+### Event controllers
 
 The menu can be controlled with its event interface.
 
-The component listens on DOM `document` for `toggle-corner-pocket` messages. Upon
-receipt it will expand or collapse the menu.
 
-The component listens on DOM `document` for `keydown` messages. If the user presses
-the configured shortcut key (<kbd>F9</kbd>, <kbd>F10</kbd>, etc) it will
-collapse/expand the menu. The <kbd>Esc</kbd> key collapses the menu.
-
-The component listens on DOM `document` for `collapse-popup` messages, which are
-sent by sibling menus or dialog boxes. Upon receipt it will collapse itself.
-
-The component listens on DOM `document` for `click` messages. When the user clicks
-anywhere outside the menu, it collapses itself.
-
-### License
-
-The <span>rwt-corner-pocket</span> web component is licensed under
-the MIT License.
-
-<img src='/img/blue-seal-mit.png' width=80 align=right />
-
-<details>
-	<summary>MIT License</summary>
-	<p>Copyright © 2020 Read Write Tools.</p>
-	<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
-	<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
-	<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
-</details>
-
-### Availability
-
-
-<table>
-	<tr><td>Source code</td> 			<td><a href='https://github.com/readwritetools/rwt-corner-pocket'>github</a></td></tr>
-	<tr><td>Package installation</td> <td><a href='https://www.npmjs.com/package/rwt-corner-pocket'>NPM</a></td></tr>
-	<tr><td>Documentation</td> 		<td><a href='https://hub.readwritetools.com/components/corner-pocket.blue'>Read Write Hub</a></td></tr>
-</table>
+<dl>
+	<dt><code>toggle-corner-pocket</code></dt>
+	<dd>The component listens on DOM <code>document</code> for <code>toggle-corner-pocket</code> messages. Upon receipt it will expand or collapse the menu.</dd>
+	<dt><code>keydown</code></dt>
+	<dd>The component listens on DOM <code>document</code> for <code>keydown</code> messages. If the user presses the configured shortcut key (<kbd>F9</kbd>, <kbd>F10</kbd>, etc) it will collapse/expand the menu. The <kbd>Esc</kbd> key collapses the menu.</dd>
+	<dt><code>collapse-popup</code></dt>
+	<dd>The component listens on DOM <code>document</code> for <code>collapse-popup</code> messages, which are sent by sibling menus or dialog boxes. Upon receipt it will collapse itself.</dd>
+	<dt><code>click</code></dt>
+	<dd>The component listens on DOM <code>document</code> for <code>click</code> messages. When the user clicks anywhere outside the menu, it collapses itself.</dd>
+	<h3>License</h3>
+	<dt>The <span class=product>rwt-corner-pocket</span> web component is licensed under the MIT License.</dt>
+	<img class=license src='/img/blue-seal-mit.png' width=80 align=right />
+	<details class=license>
+		<summary>MIT License</summary>
+		<p>Copyright © 2020 Read Write Tools.</p>
+		<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+		<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+		<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+	</details>
+	<h3>Availability</h3>
+	<table>
+		<tr><td>Source code</td> 			<td><a href='https://github.com/readwritetools/rwt-corner-pocket'>github</a></td></tr>
+		<tr><td>Package installation</td> <td><a href='https://www.npmjs.com/package/rwt-corner-pocket'>NPM</a></td></tr>
+		<tr><td>Documentation</td> 		<td><a href='https://hub.readwritetools.com/components/corner-pocket.blue'>Read Write Hub</a></td></tr>
+	</table>
+</dl>
 
