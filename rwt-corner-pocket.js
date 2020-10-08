@@ -5,7 +5,7 @@
 // Copyright:    Read Write Tools © 2020
 // License:      MIT
 // Initial date: Jan 7, 2020
-// Purpose:      Lower left corner-pocket popup menu
+// Purpose:      Corner-pocket popup menu
 //
 //=============================================================================
 

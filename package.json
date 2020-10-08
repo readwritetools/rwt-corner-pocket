@@ -1,7 +1,7 @@
 {
   "name": "rwt-corner-pocket",
   "version": "1.0.17",
-  "description": "Lower left corner-pocket popup menu, a standards-based DOM Component",
+  "description": "Corner-pocket popup menu, a standards-based DOM Component",
   "author": "Read Write Tools",
   "license": "MIT",
   "module": "rwt-corner-pocket.js",
