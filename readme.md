@@ -217,6 +217,7 @@ rwt-corner-pocket {
     --width: 20rem;
     --bottom: 30px;
     --left: 30px;
+    --z-index: 1;
 }
 ```
 
